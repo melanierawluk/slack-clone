@@ -50,6 +50,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
                         disabled={false}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        placeholder='Password'
                         type="password"
                         required
                     ></Input>
