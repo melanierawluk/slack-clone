@@ -23,10 +23,10 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 
     const { signIn } = useAuthActions();
 
-
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [confirmPassword, setConfirmPassword] = useState<string>("")
+    const [name, setName] = useState<string>("");
     const [pending, setPending] = useState<boolean>(false);
     const [error, setError] = useState<string>("")
 
@@ -38,7 +38,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             })
     }
 
-    const onPasswordSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+    const onPasswordSignUp = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (password !== confirmPassword) {
             setError("Passwords do not match");
@@ -46,7 +46,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
         }
 
         setPending(true);
-        signIn('password', { email, password, flow: 'signUp' })
+        signIn('password', { name, email, password, flow: 'signUp' })
             .catch(() => {
                 setError("Something went wrong")
             })
@@ -74,7 +74,14 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             )}
             <CardContent className="space-y-5  px-0 pb-0">
                 <form className="space-y-2.5"
-                    onSubmit={onPasswordSignIn}>
+                    onSubmit={onPasswordSignUp}>
+                    <Input
+                        disabled={pending}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Full name"
+                        required
+                    ></Input>
                     <Input
                         disabled={pending}
                         value={email}
