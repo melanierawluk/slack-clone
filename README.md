@@ -1,11 +1,3 @@
-# SLACK CLONE
+# Slack Clone
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-
-npx convex dev
-```
+`Work in progress`
