@@ -42,5 +42,7 @@ export const getById = query({
         if (!userId) {
             throw new Error("Unauthorized");
         };
+
+        return await ctx.db.get(args.id);
     },
 });
