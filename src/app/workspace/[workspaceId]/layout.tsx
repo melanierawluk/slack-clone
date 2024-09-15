@@ -2,6 +2,7 @@
 
 import React from "react";
 import Toolbar from "./Toolbar";
+import Sidebar from "./Sidebar";
 
 
 interface WorkspaceIdLayoutProps {
@@ -13,7 +14,10 @@ export default function WorkspaceLayout({ children }: WorkspaceIdLayoutProps) {
     return (
         <section className="h-full">
             <Toolbar />
-            {children}
+            <div className="flex h-[calc(100vh-40px)]">
+                <Sidebar />
+                {children}
+            </div>
         </section>
     );
 }
