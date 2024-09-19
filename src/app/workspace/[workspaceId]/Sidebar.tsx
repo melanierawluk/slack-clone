@@ -1,7 +1,12 @@
 import UserButton from "@/features/auth/components/UserButton";
 import WorkspaceSwitcher from "./WorkspaceSwitcher";
 import SidebarButton from "./SidebarButton";
-import { BellIcon, HomeIcon, MessagesSquareIcon, MoreHorizontalIcon } from "lucide-react";
+import {
+    BellIcon,
+    HomeIcon,
+    MessagesSquareIcon,
+    MoreHorizontalIcon
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 
 
