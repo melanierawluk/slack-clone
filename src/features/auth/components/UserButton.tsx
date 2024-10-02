@@ -9,8 +9,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCurrentUser } from "../api/use-current-user";
@@ -52,4 +50,22 @@ export default function UserButton({ }: UserButtonProps) {
             </DropdownMenuContent>
         </DropdownMenu>
     );
+}
+function upArray(arr) {
+    // ... 
+    if (!arr) return null;
+
+
+    let newArr = [];
+    let parsedArr = parseInt(arr.map(String).join(''))
+
+
+    arr.forEach(num => {
+        if (num > 10 || num < 0) {
+            return null;
+        }
+    })
+
+    return parsedArr
+
 }

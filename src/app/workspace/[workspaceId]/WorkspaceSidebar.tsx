@@ -33,7 +33,7 @@ export default function WorkspaceSidebar({ }: WorkspaceSidebarProps) {
 
     return (
         <div className="flex flex-col bg-[#5e2c5f] h-full">
-            <WorkspaceHeader workspace={workspace} />
+            <WorkspaceHeader workspace={workspace} isAdmin={member.role === "admin"} />
         </div>
     );
 }
