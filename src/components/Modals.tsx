@@ -1,8 +1,8 @@
 'use client'
 
-import CreateWorkspaceModal from "@/features/workspaces/components/createWorkspaceModal"
+import CreateChannelModal from "@/features/channels/components/CreateChannelModal";
+import CreateWorkspaceModal from "@/features/workspaces/components/createWorkspaceModal";
 import { useEffect, useState } from "react";
-
 
 interface ModalsProps { }
 
@@ -17,6 +17,7 @@ export default function Modals({ }: ModalsProps) {
 
     return (
         <>
+            <CreateChannelModal />
             <CreateWorkspaceModal />
         </>
     );

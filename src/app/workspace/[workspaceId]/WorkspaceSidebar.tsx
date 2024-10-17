@@ -9,6 +9,7 @@ import { useGetChannels } from "@/features/channels/api/use-get-channels";
 import WorkspaceSection from "./WorkspaceSection";
 import { useGetMembers } from "@/features/members/api/use-get-members";
 import UserItem from "./UserItem";
+import { useCreateChanneleModal } from "@/features/channels/store/use-create-channel-modal";
 
 
 interface WorkspaceSidebarProps { }
@@ -16,6 +17,7 @@ interface WorkspaceSidebarProps { }
 export default function WorkspaceSidebar({ }: WorkspaceSidebarProps) {
 
     const workspaceId = useWorkspaceId();
+    const [_open, setOpen] = useCreateChanneleModal();
 
     const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId });
     const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId });
@@ -60,7 +62,8 @@ export default function WorkspaceSidebar({ }: WorkspaceSidebarProps) {
             <WorkspaceSection
                 label="Channels"
                 hint="New channel"
-                onNew={() => { }}
+                // remove plus button if user not admin
+                onNew={member.role === "admin" ? () => setOpen(true) : undefined}
             >
                 {channels?.map((item) => (
                     <SidebarItem
@@ -76,7 +79,6 @@ export default function WorkspaceSidebar({ }: WorkspaceSidebarProps) {
                 onNew={() => { }}
             >
                 {members?.map((item) => {
-                    console.log(item.user.image)
                     return (
                         <UserItem
                             key={item._id}
