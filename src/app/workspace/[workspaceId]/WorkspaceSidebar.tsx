@@ -7,16 +7,22 @@ import { AlertTriangle, HashIcon, Loader, MessageSquareTextIcon, SendHorizonalIc
 import SidebarItem from "./SidebarItem";
 import { useGetChannels } from "@/features/channels/api/use-get-channels";
 import WorkspaceSection from "./WorkspaceSection";
+import { useGetMembers } from "@/features/members/api/use-get-members";
+import UserItem from "./UserItem";
 
 
 interface WorkspaceSidebarProps { }
 
 export default function WorkspaceSidebar({ }: WorkspaceSidebarProps) {
+
     const workspaceId = useWorkspaceId();
 
     const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId });
     const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId });
     const { data: channels, isLoading: channelsLoading } = useGetChannels({ workspaceId });
+    const { data: members, isLoading: membersLoading } = useGetMembers({ workspaceId });
+
+
 
     if (workspaceLoading || memberLoading) {
         return (
@@ -64,7 +70,23 @@ export default function WorkspaceSidebar({ }: WorkspaceSidebarProps) {
                         label={item.name} />
                 ))}
             </WorkspaceSection>
-
+            <WorkspaceSection
+                label="Direct Messages"
+                hint="New direct message"
+                onNew={() => { }}
+            >
+                {members?.map((item) => {
+                    console.log(item.user.image)
+                    return (
+                        <UserItem
+                            key={item._id}
+                            id={item._id}
+                            label={item.user.name}
+                            image={item.user.image}
+                        />
+                    )
+                })}
+            </WorkspaceSection>
         </div>
 
     );
